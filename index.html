@@ -3,89 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fidanın Dünyası</title>
+    <title>Xoş Gəlmisiniz</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: #0b0e14; /* Tünd gecə rəngi */
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        .header {
-            margin-top: 50px;
-            text-align: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden; /* Səhifənin sağa-sola oynamaması üçün */
         }
 
         h1 {
-            font-size: 3rem;
-            color: #ff7eb9; /* Çəhrayı rəng */
-            text-shadow: 0 0 10px rgba(255, 126, 185, 0.5);
+            font-size: 2.5rem;
+            color: #ff7eb9;
+            text-shadow: 0 0 15px rgba(255, 126, 185, 0.4);
+            margin-bottom: 20px;
         }
 
         .flower-container {
-            margin: 30px 0;
-            width: 80%;
-            max-width: 600px;
+            width: 90%;
+            max-width: 550px;
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-            border: 2px solid #333;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
         }
 
         .flower-container img {
             width: 100%;
+            border-radius: 20px;
             display: block;
-        }
-
-        .about {
-            max-width: 600px;
-            text-align: center;
-            padding: 20px;
-            line-height: 1.6;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            margin-bottom: 50px;
-        }
-
-        .button {
-            background-color: #ff7eb9;
-            color: white;
-            padding: 10px 25px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .button:hover {
-            background-color: #ffb7d5;
-            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Xoş Gəlmisiniz!</h1>
-        <p>Mənim şəxsi veb-saytıma xoş gəldiniz.</p>
-    </div>
+    <h1>Xoş Gəlmisiniz!</h1>
 
     <div class="flower-container">
         <img src="https://cdn.dribbble.com/userupload/26856757/file/original-1e6f11127a31f28cd4880148ed938e68.gif" alt="Gül Animasiyası">
-    </div>
-
-    <div class="about">
-        <h2>Mən Kiməm?</h2>
-        <p>Salam! Mən Fidan. Bu mənim GitHub üzərində yaratdığım ilk veb-saytımdır. 
-           Proqramlaşdırma dünyasını kəşf edirəm və gözəl animasiyaları sevirəm.</p>
-        <br>
-        <a href="#" class="button">Mənə Mesaj Yaz</a>
     </div>
 
 </body>
