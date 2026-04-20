@@ -8,134 +8,121 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0b0e14; /* Tünd gecə rəngi */
+            background-color: #0b0e14;
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-        }
-
-        .header {
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 30px;
+            user-select: none; /* Yazıların seçilməməsi üçün */
         }
 
         h1 {
-            font-size: 2.8rem;
-            color: #ff7eb9; /* Parlaq çəhrayı */
-            text-shadow: 0 0 15px rgba(255, 126, 185, 0.6);
-            margin: 0;
+            font-size: 2.5rem;
+            color: #ff7eb9;
+            text-shadow: 0 0 15px rgba(255, 126, 185, 0.5);
+            margin: 20px 0;
         }
 
-        /* Bu hissə sol və sağ tərəfi yan-yana düzür */
-        .main-content {
+        .container {
             display: flex;
-            flex-direction: row; /* Yan-yana düzmək üçün */
-            align-items: center;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 40px; /* Aralarında məsafə */
-            width: 90%;
-            max-width: 1100px;
-            margin-bottom: 50px;
-        }
-
-        /* SOL TƏRƏF (Gül) */
-        .flower-container {
-            width: 50%; /* Səhifənin yarısı */
-            max-width: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-            border: 2px solid #333;
-        }
-
-        .flower-container img {
+            align-items: center;
+            gap: 50px;
             width: 100%;
-            display: block;
+            padding: 20px;
         }
 
-        /* SAĞ TƏRƏF (Sevgi Barı) */
-        .love-bar-container {
-            width: 30%; /* Bir az daha dar */
-            max-width: 250px;
-            text-align: center;
+        .flower {
+            width: 400px;
+            max-width: 90%;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        .love-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            border-radius: 15px;
-            border: 2px dashed #444; /* Müvəqqəti çərçivə */
+            cursor: pointer; /* Üstünə gələndə kliklənə biləcəyini göstərir */
         }
 
-        .love-bar-title {
-            color: #ff3399; /* Daha tünd parlaq çəhrayı */
+        .bar-title {
+            color: #ff3399;
+            font-weight: bold;
+            margin-bottom: 10px;
             font-size: 1.5rem;
-            text-shadow: 0 0 10px rgba(255, 51, 153, 0.5);
-            margin-bottom: 15px;
         }
 
-        /* Animasiyalı Neon Bar */
-        .bar-outline {
-            width: 60px;
-            height: 300px;
-            border: 3px solid rgba(255, 126, 185, 0.3);
-            border-radius: 30px;
+        .bar-outer {
+            width: 70px;
+            height: 250px;
+            border: 3px solid #ff7eb9;
+            border-radius: 50px;
             position: relative;
+            background: rgba(255, 126, 185, 0.1);
             overflow: hidden;
-            box-shadow: 0 0 15px rgba(255, 126, 185, 0.1);
+            transition: transform 0.1s;
         }
 
-        .bar-fill {
+        .bar-outer:active {
+            transform: scale(0.95); /* Klikləyəndə kiçik sıxılma effekti */
+        }
+
+        .bar-inner {
             width: 100%;
-            height: 70%; /* Neçə faiz dolu olduğu (burada 70%) */
-            background-color: #ff3399;
-            border-radius: 30px;
+            height: 10%; /* Başlanğıc doluluq */
+            background: linear-gradient(to top, #ff0066, #ff7eb9);
             position: absolute;
             bottom: 0;
-            left: 0;
-            box-shadow: 0 0 25px #ff3399, 0 0 50px rgba(255, 51, 153, 0.5);
-            animation: fillPulse 2s infinite ease-in-out; /* Pulsasiya animasiyası */
+            box-shadow: 0 0 20px #ff3399;
+            transition: height 0.3s ease-out; /* Artanda yumşaq keçid */
         }
 
-        @keyframes fillPulse {
-            0% { box-shadow: 0 0 25px #ff3399; transform: scaleY(1); }
-            50% { box-shadow: 0 0 35px #ff3399, 0 0 60px rgba(255, 51, 153, 0.7); transform: scaleY(1.02); }
-            100% { box-shadow: 0 0 25px #ff3399; transform: scaleY(1); }
-        }
-
-        .small-text {
-            color: #ccc;
-            font-size: 0.9rem;
-            margin-top: 15px;
-            opacity: 0.8;
+        .percent-text {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #ff7eb9;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Xoş Gəlmisiniz!</h1>
-    </div>
+    <h1>Xoş Gəlmisiniz!</h1>
 
-    <div class="main-content">
-        <div class="flower-container">
-            <img src="https://cdn.dribbble.com/userupload/26856757/file/original-1e6f11127a31f28cd4880148ed938e68.gif" alt="Gül Animasiyası">
-        </div>
+    <div class="container">
+        <img class="flower" src="https://cdn.dribbble.com/userupload/26856757/file/original-1e6f11127a31f28cd4880148ed938e68.gif" alt="Gül">
 
-        <div class="love-bar-container">
-            <div class="love-bar-title">Sevgi Barı 💞</div>
-            
-            <div class="bar-outline">
-                <div class="bar-fill"></div>
+        <div class="love-section" onclick="increaseLove()">
+            <div class="bar-title">Sevgi Barı</div>
+            <div class="bar-outer">
+                <div id="loveBar" class="bar-inner"></div>
             </div>
-
-            <div class="small-text">Sənin üçün yaradıldı.</div>
+            <div class="percent-text">Dolur: <span id="percent">10</span>%</div>
+            <p style="font-size: 0.8rem; color: #666;">(Artırmaq üçün kliklə!)</p>
         </div>
     </div>
+
+    <script>
+        let currentHeight = 10;
+        
+        function increaseLove() {
+            if (currentHeight < 100) {
+                currentHeight += 10; // Hər klikdə 10% artır
+                if (currentHeight > 100) currentHeight = 100;
+                
+                document.getElementById('loveBar').style.height = currentHeight + '%';
+                document.getElementById('percent').innerText = currentHeight;
+                
+                if (currentHeight === 100) {
+                    alert("Sevgi Barı Tam Doldu! ❤️🌸");
+                }
+            }
+        }
+    </script>
 
 </body>
 </html>
