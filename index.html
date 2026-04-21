@@ -1,28 +1,19 @@
+<input type="number" id="balInput" placeholder="Balınızı yazın">
+
+<button onclick="hesabla()">Tövsiyə Al</button>
+
+<p id="netice"></p>
+
 <script>
-    function tövsiyəVer() {
-        // İstifadəçinin yazdığı balı götürürük
-        let bal = document.getElementById("balInput").value;
-        let nəticəSahəsi = document.getElementById("netice");
+function hesabla() {
+    // Burada 'balInput' HTML-dəki id ilə eyni olmalıdır
+    var bal = document.getElementById("balInput").value; 
+    var mesaj = "";
 
-        if (bal === "") {
-            alert("Zəhmət olmasa balınızı daxil edin!");
-            return;
-        }
+    if (bal >= 600) { mesaj = "Yüksək nəticə! Tibb və ya İT seçə bilərsiniz."; }
+    else if (bal >= 400) { mesaj = "Yaxşı nəticə! İqtisadiyyat uyğundur."; }
+    else { mesaj = "Digər ixtisaslara baxmağınız məsləhətdir."; }
 
-        // Sadə bir məntiq qururuq
-        let mesaj = "";
-        if (bal >= 600) {
-            mesaj = "Təbriklər! Siz Tibb və ya Hüquq kimi yüksək ixtisaslara müraciət edə bilərsiniz. ✨";
-        } else if (bal >= 400) {
-            mesaj = "Yaxşı nəticədir! Mühəndislik və ya İqtisadiyyat ixtisasları sizə uyğun ola bilər. 📚";
-        } else if (bal >= 200) {
-            mesaj = "Dövlət universitetlərində bir çox ixtisasa şansınız var. 🎓";
-        } else {
-            mesaj = "Balınız bir az aşağıdır, lakin kollec və ya ödənişli ixtisasları nəzərdən keçirə bilərsiniz. 💪";
-        }
-
-        // Nəticəni ekranda göstəririk
-        nəticəSahəsi.innerHTML = mesaj;
-        nəticəSahəsi.style.display = "block";
-    }
+    document.getElementById("netice").innerText = mesaj;
+}
 </script>
