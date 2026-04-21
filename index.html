@@ -3,52 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qəbul Rəhbəri - Universitet Tövsiyəsi</title>
+    <title>Qəbul Rəhbəri - Qruplar üzrə</title>
     <style>
-        body { background-color: #0a0e1a; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background-color: #111827; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center; width: 380px; border: 1px solid #1f2937; }
-        h2 { font-size: 1.3rem; margin-bottom: 20px; color: #60a5fa; }
-        input { width: 90%; padding: 12px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #374151; background-color: #1f2937; color: white; font-size: 1rem; outline: none; }
-        button { width: 100%; padding: 12px; border-radius: 10px; border: none; background: linear-gradient(to right, #2563eb, #7c3aed); color: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { transform: scale(1.02); opacity: 0.9; }
-        #netice { margin-top: 25px; padding: 15px; border-radius: 12px; background: #1e293b; color: #fbbf24; font-size: 0.95rem; line-height: 1.6; display: none; border-left: 4px solid #fbbf24; text-align: left; }
+        body { background-color: #0f172a; color: white; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background-color: #1e293b; padding: 40px; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: center; width: 400px; border: 1px solid #334155; }
+        h2 { font-size: 1.5rem; margin-bottom: 25px; color: #38bdf8; }
+        select, input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #475569; background-color: #334155; color: white; font-size: 1rem; outline: none; box-sizing: border-box; }
+        button { width: 100%; padding: 14px; border-radius: 12px; border: none; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4); }
+        #netice { margin-top: 25px; padding: 20px; border-radius: 15px; background: #0f172a; color: #facc15; font-size: 0.95rem; line-height: 1.6; display: none; text-align: left; border: 1px dashed #facc15; }
+        strong { color: #38bdf8; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>🎓 Universitet və İxtisas Seçimi</h2>
-        <input type="number" id="balInput" placeholder="Balınızı daxil edin (məs: 560)">
+        <h2>🎓 Qəbul Rəhbəri</h2>
+        
+        <select id="qrupSeçimi">
+            <option value="">İxtisas qrupunu seçin</option>
+            <option value="1">I Qrup (Riyaziyyat-Fizika)</option>
+            <option value="2">II Qrup (Riyaziyyat-Coğrafiya)</option>
+            <option value="3">III Qrup (Dil-Tarix)</option>
+            <option value="4">IV Qrup (Biologiya-Kimya)</option>
+        </select>
+
+        <input type="number" id="balInput" placeholder="Balınızı daxil edin (0-700)">
+        
         <button onclick="tovsiyeVer()">Tövsiyə Al ✨</button>
+        
         <div id="netice"></div>
     </div>
 
     <script>
         function tovsiyeVer() {
-            var bal = document.getElementById("balInput").value;
-            var neticeSahesi = document.getElementById("netice");
-            
-            if (bal === "" || bal < 0 || bal > 700) {
-                alert("Zəhmət olmasa 0-700 arası düzgün bal daxil edin!");
+            const qrup = document.getElementById("qrupSeçimi").value;
+            const bal = document.getElementById("balInput").value;
+            const neticeSahesi = document.getElementById("netice");
+
+            if (!qrup || !bal || bal < 0 || bal > 700) {
+                alert("Zəhmət olmasa həm qrupu seçin, həm də düzgün bal daxil edin!");
                 return;
             }
 
-            var mesaj = "";
             neticeSahesi.style.display = "block";
+            let tövsiyə = "";
 
-            if (bal >= 650) {
-                mesaj = "<strong>Mükəmməl!</strong><br>📍 <strong>Universitet:</strong> BANM, ADA və ya ATU<br>📚 <strong>İxtisas:</strong> İnformasiya Təhlükəsizliyi, Tibb və ya Hüquq.";
-            } else if (bal >= 550) {
-                mesaj = "<strong>Yüksək Nəticə!</strong><br>📍 <strong>Universitet:</strong> UNEC, BDU və ya BMU<br>📚 <strong>İxtisas:</strong> Maliyyə, Mühasibat, Kompüter Mühəndisliyi.";
-            } else if (bal >= 400) {
-                mesaj = "<strong>Yaxşı Nəticə!</strong><br>📍 <strong>Universitet:</strong> ADNSU, ADPU və ya AzTU<br>📚 <strong>İxtisas:</strong> Energetika, Müəllimlik, Logistika.";
-            } else if (bal >= 250) {
-                mesaj = "<strong>Orta Nəticə!</strong><br>📍 <strong>Universitet:</strong> SDU, AMU və ya Özəl Universitetlər<br>📚 <strong>İxtisas:</strong> Marketinq, Menecment, Regionşünaslıq.";
-            } else {
-                mesaj = "<strong>Daha çox çalışmaq olar!</strong><br>📍 Hazırda Kolleclər və ya bəzi ödənişli ixtisaslar daha uyğun görünür.";
+            if (qrup === "1") {
+                if (bal >= 600) tövsiyə = "📍 <strong>BANM:</strong> İnformasiya Təhlükəsizliyi<br>📍 <strong>ADA:</strong> Kompüter Elmləri";
+                else if (bal >= 450) tövsiyə = "📍 <strong>AzTU:</strong> Logistika<br>📍 <strong>ADNSU:</strong> Neft-qaz mühəndisliyi";
+                else tövsiyə = "📍 <strong>BMU:</strong> Mexanika mühəndisliyi<br>📍 <strong>AzTU:</strong> Nəqliyyat";
+            } 
+            else if (qrup === "2") {
+                if (bal >= 600) tövsiyə = "📍 <strong>UNEC:</strong> Beynəlxalq Ticarət<br>📍 <strong>ADA:</strong> Biznesin İdarə Edilməsi";
+                else if (bal >= 450) tövsiyə = "📍 <strong>BDU:</strong> Coğrafiya müəllimliyi<br>📍 <strong>UNEC:</strong> Mühasibat";
+                else tövsiyə = "📍 <strong>ADAU:</strong> Menecment<br>📍 <strong>Özəl Uni:</strong> Marketinq";
+            } 
+            else if (qrup === "3") {
+                if (bal >= 600) tövsiyə = "📍 <strong>BDU:</strong> Hüquqşünaslıq<br>📍 <strong>ADA:</strong> Beynəlxalq Münasibətlər";
+                else if (bal >= 450) tövsiyə = "📍 <strong>ADPU:</strong> Xarici dil müəllimliyi<br>📍 <strong>ADU:</strong> Tərcümə";
+                else tövsiyə = "📍 <strong>BSU:</strong> Regionşünaslıq<br>📍 <strong>BDU:</strong> Kitabxanaçılıq";
+            } 
+            else if (qrup === "4") {
+                if (bal >= 600) tövsiyə = "📍 <strong>ATU:</strong> Müalicə işi (Tibb)<br>📍 <strong>ATU:</strong> Stomatologiya";
+                else if (bal >= 450) tövsiyə = "📍 <strong>BDU:</strong> Biologiya<br>📍 <strong>ADPU:</strong> Kimya müəllimliyi";
+                else tövsiyə = "📍 <strong>ATU:</strong> Əczaçılıq (Ödənişli)<br>📍 <strong>ADAU:</strong> Baytarlıq";
             }
 
-            neticeSahesi.innerHTML = mesaj;
+            neticeSahesi.innerHTML = `<strong>${qrup}-cü qrup üzrə tövsiyələr:</strong><br><br>${tövsiyə}`;
         }
     </script>
 
