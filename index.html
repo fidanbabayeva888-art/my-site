@@ -1,21 +1,28 @@
-<!DOCTYPE html>
-<html lang="az">
-<head>
-    <meta charset="UTF-8">
-    <title>Qəbul Rəhbəri AI</title>
-    <style>
-        body { background-color: #05070a; font-family: sans-serif; color: white; display: flex; justify-content: center; padding-top: 50px; }
-        .card { background-color: #0d1117; border: 1px solid #30363d; border-radius: 20px; padding: 30px; width: 350px; text-align: center; }
-        input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #30363d; background: #161b22; color: white; }
-        button { width: 100%; padding: 15px; border-radius: 12px; border: none; background: linear-gradient(45deg, #000046, #1cb5e0); color: white; font-weight: bold; cursor: pointer; margin-top: 20px; }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <h2>Bal Məlumatlarını Daxil Edin</h2>
-        <select><option>Blok Seçin</option></select>
-        <input type="number" placeholder="Ümumi bal: 560">
-        <button>✨ İxtisas Tövsiyəsi Al</button>
-    </div>
-</body>
-</html>
+<script>
+    function tövsiyəVer() {
+        // İstifadəçinin yazdığı balı götürürük
+        let bal = document.getElementById("balInput").value;
+        let nəticəSahəsi = document.getElementById("netice");
+
+        if (bal === "") {
+            alert("Zəhmət olmasa balınızı daxil edin!");
+            return;
+        }
+
+        // Sadə bir məntiq qururuq
+        let mesaj = "";
+        if (bal >= 600) {
+            mesaj = "Təbriklər! Siz Tibb və ya Hüquq kimi yüksək ixtisaslara müraciət edə bilərsiniz. ✨";
+        } else if (bal >= 400) {
+            mesaj = "Yaxşı nəticədir! Mühəndislik və ya İqtisadiyyat ixtisasları sizə uyğun ola bilər. 📚";
+        } else if (bal >= 200) {
+            mesaj = "Dövlət universitetlərində bir çox ixtisasa şansınız var. 🎓";
+        } else {
+            mesaj = "Balınız bir az aşağıdır, lakin kollec və ya ödənişli ixtisasları nəzərdən keçirə bilərsiniz. 💪";
+        }
+
+        // Nəticəni ekranda göstəririk
+        nəticəSahəsi.innerHTML = mesaj;
+        nəticəSahəsi.style.display = "block";
+    }
+</script>
